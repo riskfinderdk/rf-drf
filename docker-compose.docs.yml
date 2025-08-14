@@ -1,0 +1,16 @@
+services:
+  docs:
+    image: riskfinder_drf_01_local_docs
+    container_name: riskfinder_drf_01_local_docs
+    build:
+      context: .
+      dockerfile: ./compose/local/docs/Dockerfile
+    env_file:
+      - ./.envs/.local/.django
+    volumes:
+      - ./docs:/docs:z
+      - ./config:/app/config:z
+      - ./riskfinder_drf_01:/app/riskfinder_drf_01:z
+    ports:
+      - '9000:9000'
+    command: /start-docs
